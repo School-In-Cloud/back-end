@@ -28,9 +28,11 @@ router.post('/register', async(req, res) => {
     if (isValid(req.body)) {
       Users.findBy({ username: username })
         .then(([user]) => {
+            const usertype = user.user_type
           if (user && bcrypt.compareSync(password, user.password)) {
-            const token = makeToken(user) // make token
-            res.status(200).json({ message: "You have successfully logged in heres a token for you: ", token }); // send it back
+            const token = makeToken(user)
+            // make token
+            res.status(200).json({ message: "You have successfully logged in heres a token for you: ", token, usertype}); // send it back
           } else {
             res.status(401).json({ message: "Invalid Login" });//tell them the login is bad
           }

@@ -41,6 +41,9 @@ exports.up = function(knex) {
   
         tbl.string('task_name', 255)
           .notNullable()
+        
+        tbl.timestamp('publish_date')
+          .defaultTo(knex.fn.now());
     })
   
     .createTable('user_tasks', tbl =>{

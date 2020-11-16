@@ -31,6 +31,9 @@ exports.up = function(knex) {
   
       users.timestamp('available')
           .defaultTo(knex.fn.now());
+
+    users.string('country', 225)
+    .notNullable()
     })
   
     .createTable('tasks', tbl =>{

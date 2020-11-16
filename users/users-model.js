@@ -5,6 +5,7 @@ module.exports = {
   find,
   findBy,
   findById,
+  findvolunteers,
 };
 
 function find() {
@@ -27,4 +28,10 @@ async function add(user) {
 
   function findById(id) {
     return db("users").where({ id }).first();
+  }
+
+  function findvolunteers(){
+    return db("Users as u")
+      .select('u.username', 'u.country', 'u.available')
+      .where({'user_type': 3})
   }

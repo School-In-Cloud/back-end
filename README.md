@@ -1,11 +1,27 @@
-Saturday:
-  Current working endpoints:
-    "/auth/register" requires username password and usertype
-    "/auth/login" requires username and password. doesnt return the user type yet
+# school-in-cloud buildweek backend
+![Heroku Badge](http://heroku-badge.herokuapp.com/?app=school-in-cloud-lambda)
 
-sunday: 
-  current working endpoints:
-    "/api/auth/register" requires username password usertype and country
-    "/api/auth/login" requires username and password. returns a key and the user type of the person who logged in.
-    "/api/users/volunteers" making a get request to this endpoint with a key will return all registered users of the 'volunteer' type.
-    roughly half of all endpoints are done at this time. Hopefully all endpoints will be done tomorrow and this backend will be ready to be deployed.
+This project was built by the #tt_webft_4 team at Lambda School.
+
+### Current Production Endpoint
+https://school-in-cloud-lambda.herokuapp.com/
+
+## Endpoints
+
+Endpoints for viewing the projects/technologies tables.
+
+
+### User related
+
+All users endpoints require authentication.
+
+GET an array of all user objects
+* [Users](USERS.md) : `GET /api/users/`
+
+### Authentication related
+
+Register a new account
+* [Register](REGISTER.md) : `POST /api/auth/register`
+Login to account
+* [Login](LOGIN.md) : `POST /api/auth/login`
+

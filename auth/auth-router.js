@@ -28,11 +28,12 @@ router.post('/register', async(req, res) => {
     if (isValid(req.body)) {
       Users.findBy({ username: username })
         .then(([user]) => {
-            const usertype = user.user_type
+            const usertype = user.user_type;
+            const userid = user.id;
           if (user && bcrypt.compareSync(password, user.password)) {
             const token = makeToken(user)
             // make token
-            res.status(200).json({ message: "You have successfully logged in heres a token for you: ", token, usertype}); // send it back
+            res.status(200).json({ message: "You have successfully logged in heres a token for you: ", token, usertype, userid}); // send it back
           } else {
             res.status(401).json({ message: "Invalid Login" });//tell them the login is bad
           }
@@ -57,7 +58,7 @@ function makeToken(user) {
     foo: 'bar',
   };
   const options = {
-    expiresIn: '5 minutes',
+    expiresIn: '15 minutes',
   };
   return jwt.sign(payload, jwtSecret, options);
 }

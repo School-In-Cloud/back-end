@@ -42,5 +42,5 @@ gets all tasks assigned to the user with the attached id
 * [Tasks](TASKS.md) : `DELETE /api/tasks/:id`
 deletes the task with the matching id
 * [Tasks](TASKS.md) : `PUT /api/tasks/:id`
-updates the task with the matching id
+updates the task with the matching id.
 

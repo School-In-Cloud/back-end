@@ -6,7 +6,8 @@ module.exports = {
     getall,
     getbyvolunteer,
     update, 
-    destroy
+    destroy,
+    getByTaskID
   };
 
 
@@ -14,6 +15,9 @@ module.exports = {
     return db("tasks").select("id", "task_name","publish_date").orderBy("id");
   }
 
+  function getByTaskID(id) {
+    return db("tasks").where({ id });
+  }
 
   async function add(task) {
         const [id] = await db("tasks").insert(task)

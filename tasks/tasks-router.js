@@ -24,7 +24,20 @@ router.post('/newtask', async(req, res) => {
       });
 })
 
-
+router.get('/:id', (req, res)=>{
+  Tasks.getByTaskID(req.params.id)
+  .then(tasks => {
+      if (tasks.length) {
+        res.json(tasks)
+      } else {
+        res.json({ message: 'no task exists' })
+      }
+    })
+    .catch(err => {
+      console.log(err.message)
+      res.json({ error: err.message })
+    });
+});
 
 router.get('/:id/tasks', (req, res)=>{
     Tasks.getbyvolunteer(req.params.id)

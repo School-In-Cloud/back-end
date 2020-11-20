@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
             res.json(tasks);
         })
         .catch(err => {
-            res.status(500).json('failed to fetch tasks');
+            res.status(500).json('Failed to fetch tasks');
         })
 })
 
@@ -33,7 +33,7 @@ router.get('/search', (req, res)=>{
       if (tasks.length) {
         res.json(tasks)
       } else {
-        res.json({ message: 'no task found' })
+        res.json({ message: `Could not find task with given query: ${query}` })
       }
     })
     .catch(err => {
@@ -53,7 +53,7 @@ router.get('/:id', (req, res)=>{
       if (tasks.length) {
         res.json(tasks)
       } else {
-        res.json({ message: 'no task exists' })
+        res.json({ message: `Could not find task with given id: ${id}` })
       }
     })
     .catch(err => {
@@ -68,7 +68,7 @@ router.get('/:id/tasks', (req, res)=>{
         if (tasks.length) {
           res.json(tasks)
         } else {
-          res.json({ message: 'no tasks for you' })
+          res.json({ message: `No task found for ID: ${req.params.id}` })
         }
       })
       .catch(err => {
@@ -85,11 +85,11 @@ router.get('/:id/tasks', (req, res)=>{
         if (deleted) {
           res.json({ removed: deleted });
         } else {
-          res.status(404).json({ message: "Could not find task with given id" });
+          res.status(404).json({ message: `Could not find task with given id: ${id}` });
         }
       })
       .catch(err => {
-        res.status(500).json({ message: "what were we doing again?" });
+        res.status(500).json({ message: `Error occured while desroying that task with id: ${id}` });
       });
   });
 
@@ -103,11 +103,11 @@ router.get('/:id/tasks', (req, res)=>{
         if (task) {
           res.json(task);
         } else {
-          res.status(404).json({ message: "that task doesnt exist right now" });
+          res.status(404).json({ message: `Could not find task with given ID: ${id}` });
         }
       })
       .catch(err => {
-        res.status(500).json({ message: "the task is perfect just the way it is and i wont be changing it" });
+        res.status(500).json({ message: `No changes found for that task. (${id})` });
       });
   });
 

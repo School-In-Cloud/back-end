@@ -24,6 +24,29 @@ router.post('/newtask', async(req, res) => {
       });
 })
 
+
+router.get('/search', (req, res)=>{
+  try {
+    const { query } = req.body;
+    Tasks.searchTask(query)
+    .then(tasks => {
+      if (tasks.length) {
+        res.json(tasks)
+      } else {
+        res.json({ message: 'no task found' })
+      }
+    })
+    .catch(err => {
+      console.log(err.message)
+      res.json({ error: err.message })
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+  
+});
+
+
 router.get('/:id', (req, res)=>{
   Tasks.getByTaskID(req.params.id)
   .then(tasks => {

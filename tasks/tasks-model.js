@@ -7,7 +7,8 @@ module.exports = {
     getbyvolunteer,
     update, 
     destroy,
-    getByTaskID
+    getByTaskID,
+    searchTask
   };
 
 
@@ -17,6 +18,10 @@ module.exports = {
 
   function getByTaskID(id) {
     return db("tasks").where({ id });
+  }
+
+  function searchTask(query) {
+    return db("tasks").where("task_name", "like", `%${query}%`);
   }
 
   async function add(task) {
